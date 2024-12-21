@@ -1,0 +1,8 @@
+[system]
+axiom = "F-F-F-F"
+iterations = 2
+angle = 90
+steps = 5
+
+[rules]
+F = "F+FF-FF-F-F+F+FF-F-F+F+FF+FF-F"

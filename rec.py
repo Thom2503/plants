@@ -1,4 +1,6 @@
 from turtle import Turtle, Vec2D, position
+from random import uniform
+import Lexer
 
 OPS: set = {
     'F',
@@ -17,16 +19,17 @@ RULES: dict[str, str] = {
     # 'F': 'F-FG+F+FG-F',
     # 'F': 'F+F-F-F+F',
     'G': 'FGFG',
-    'X': 'F+[[X]-X]-F[-FX]+X',
-    # 'X': 'F[+X][-X]FX',
-    'F': 'FF',
+    # 'X': 'F+[[X]-X]-F[-FX]+X',
+    'X': 'F[+X][-X]FX',
+    # 'F': 'FF',
+    'F': 'F[+F]F[-F]F',
     '+': '+',
     '-': '-',
     '[': '[',
     ']': ']',
 }
 
-ITERATIONS: int = 7
+ITERATIONS: int = 5
 STEPS: int = 3
 ANGLE: int | float = 25.7
 """
@@ -35,6 +38,31 @@ ANGLE: int | float = 25.7
 w -> F-F-F-F
 #DEFINE w F-F-F-F
 #DEFINE F F-FF--F-F
+
+<int>        ::= [0-9]+
+<digit>      ::= <int> | <int> ["." <int>]
+<symbol>     ::= [a-Z]
+<condition>  ::= <variable> <comparison> <value>
+<comparison> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
+<variable>   ::= [a-Z]
+<value>      ::= <digit>
+<replacement> ::= <symbol> | <symbol> <rule>
+
+<angle> ::= "angle" ":" <digit>
+<axiom> ::= "axiom" ":" <symbol>
+<n>     ::= "n" ":" <digit>
+<rule>  ::= <symbol> "->" <replacement>
+<param_rule> ::= <symbol> "(" <parameters> ")" ":" <condition> "->" <replacement>
+
+<rules> ::= <rule> | <rule> <rules>
+<param_rules> ::= <param_rule> | <param_rule> <param_rules>
+"""
+
+test_str = """Angle : 90
+N : 6
+Axiom : F
+F -> F+F+FA
+A(x, y) : x == 0 -> F-F+F-F
 """
 
 
@@ -45,7 +73,7 @@ def moveTurtle(commands: str) -> None:
     positions = []
     angles = []
     t.setheading(90)
-    t.goto(0, -200)
+    # t.goto(0, -200)
     for command in commands:
         t.screen.update()
         if command == "F":
@@ -62,6 +90,7 @@ def moveTurtle(commands: str) -> None:
             positions.append(t.pos())
             angles.append(t.heading())
         elif command == "]":
+            t.color((0, uniform(0, 1), 0))
             t.goto(positions.pop())
             t.setheading(angles.pop())
         elif command.lower() not in OPS:
@@ -80,5 +109,6 @@ def createString(input: str, iter: int) -> str:
 
 
 if __name__ == "__main__":
-    print(createString("X", ITERATIONS))
-    moveTurtle(createString("X", ITERATIONS))
+    lex = Lexer.Lexer(test_str)
+    lex.Lex()
+    moveTurtle(createString("F", ITERATIONS))

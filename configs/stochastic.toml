@@ -1,0 +1,17 @@
+[system]
+axiom = "F"
+iterations = 6
+steps = 4
+angle = 25.7
+
+[rules]
+1 = "F[+F]F[-F]F"
+2 = "F[+F]F"
+3 = "F[-F]F"
+
+[probabilities]
+F = [
+	{ rule = 1, probability = 0.33},
+	{ rule = 2, probability = 0.33},
+	{ rule = 3, probability = 0.34},
+]

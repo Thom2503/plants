@@ -1,0 +1,8 @@
+[system]
+axiom = "F"
+steps = 5
+iterations = 5
+angle = 25.7
+
+[rules]
+F = "F[+F]F[-F]F"

@@ -1,0 +1,9 @@
+[system]
+axiom = "L"
+iterations = 4
+angle = 60
+steps = 3
+
+[rules]
+L = "FL+FR++FR-FL--FLFL-FR+"
+R = "-FL+FRFR++FR+FL--FL-FR"
