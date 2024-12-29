@@ -79,6 +79,10 @@ class DOL:
                 t.down()
                 t.forward(self.steps)
                 t.up()
+            elif command == "G":
+                t.down()
+                t.forward(self.steps)
+                t.up()
             elif command == "f":
                 t.forward(self.steps)
             elif command == "+":

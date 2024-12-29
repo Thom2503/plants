@@ -1,0 +1,9 @@
+[system]
+axiom = "F-G-G"
+angle = 120
+iterations = 6
+steps = 5
+
+[rules]
+F = "F-G+F+G-F"
+G = "GG"
