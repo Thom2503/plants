@@ -1,0 +1,17 @@
+[system]
+axiom = "baaaaaaaa"
+iterations = 30
+angle = 25
+steps = 2
+
+[rules]
+p1 = "b"
+p2 = "a"
+
+[contexts]
+a = [
+	{left = "b", right = "*", rule = "p1"}
+]
+b = [
+	{left = "*", right = "*", rule = "p2"}
+]

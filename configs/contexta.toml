@@ -1,0 +1,39 @@
+[system]
+axiom = "F1F1F1"
+angle = 22.5
+iterations = 30
+steps = 5
+ignore = ["+", "-", "F"]
+context = true
+
+[rules]
+p1 = "0"
+p2 = "1[+F1F1]"
+p3 = "1"
+p4 = "1"
+p5 = "0"
+p6 = "1F1"
+p7 = "0"
+p8 = "0"
+p9 = "-"
+p0 = "+"
+
+[contexts]
+1 = [
+	{ left = 0, right = 0, rule = "p3"},
+	{ left = 0, right = 1, rule = "p4"},
+	{ left = 1, right = 0, rule = "p7"},
+	{ left = 1, right = 1, rule = "p8"},
+]
+0 = [
+	{ left = 0, right = 0, rule = "p1"},
+	{ left = 0, right = 1, rule = "p2"},
+	{ left = 1, right = 0, rule = "p5"},
+	{ left = 1, right = 1, rule = "p6"},
+]
+"-" = [
+	{ left = "*", right = "*", rule = "p0"},
+]
+"+" = [
+	{ left = "*", right = "*", rule = "p9"},
+]
